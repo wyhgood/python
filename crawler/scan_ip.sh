@@ -1,6 +1,5 @@
 #!/bin/sh
-
-function random(){ 
+random(){ 
 min=$1 
 max=$(($2-$min+1)) 
 num=$(cat /proc/sys/kernel/random/uuid | cksum | awk -F ' ' '{print $1}') 
@@ -8,9 +7,11 @@ echo $(($num%$max+$min))
 }
 
 starttime=$(date '+%s');
+echo 'aaa'
 
 ports=(8080 8090 8123 9999);
-max=50000;
+
+max=100;
 timeout=6;
 url=http://www.baidu.com/
 ipcount=0;

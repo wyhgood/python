@@ -10,14 +10,18 @@ int main()
 
     struct sockaddr_in target;
     char *ip= "www.baidu.com";
-    struct hostent* host = gethostbyname(ip);
+    char *ip1 = "11.1.1.1";
+    struct hostent* host = gethostbyname(ip1);
     target.sin_addr = *((struct in_addr *)host->h_addr);
     target.sin_family = AF_INET;
     target.sin_port=htons(0);
 
 
 
-    test();
+    //test();
     send_v4(sockfd, &target);
-    //proc_v4();
+    recv_v4(sockfd, &target);
+    test(); 
+    proc_v4();
+    return 0;
 }

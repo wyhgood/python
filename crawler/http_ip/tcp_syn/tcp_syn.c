@@ -5,7 +5,7 @@
 #include "netinet/in.h"
 #include <sys/types.h>
 
-#define BUFSIZE 1500
+
 
 void
 test()
@@ -48,21 +48,82 @@ send_v4(int sockfd, struct sockaddr_in *tar)
     printf("testing\n");
     int addrlen = sizeof(struct sockaddr_in);
     sendto(sockfd, sendbuf, len, 0, (struct sockaddr *)tar, addrlen);
+    return;
 }
 
 
-void proc_v4(int sockfd, struct sockaddr_in *tar)
+void recv_v4(int sockfd, struct sockaddr_in *tar)
 {
-    char recbuf[BUFSIZE];
-    bzero(recbuf,sizeof(recbuf));
+    bzero(recvbuf,sizeof(recvbuf));
     int len = sizeof(struct sockaddr_in);
-    int n = recvfrom(sockfd, recbuf, sizeof(recbuf), 0, (struct sockaddr *)tar, &len);
+    int n = recvfrom(sockfd, recvbuf, sizeof(recvbuf), 0, (struct sockaddr *)tar, &len);
     printf("n = %i\n", n);
+    return;
 }
 
 
+void
+proc_v4()
+{
+    printf("-2-2-2-2-\n");
+    
+    int hlen, icmplen;
+    int len = 84;
+    //int len = sizeof(recvbuf);
+    printf("recvlen\t%i", len);
+    double rtt;
+    struct ip ip;
+    
+    printf("-1-1-1-1-1-1");
+    
+    
+    struct icmp *icmp;
+    //struct timeval *tvsend;
+    printf("00000000000");
+    
+    struct ip *ip_tmp  = (struct ip *)&recvbuf;
+    ip = *ip_tmp;
+    printf("1111111111111");
+   
 
+ 
+    printf("hlen\t%i\n", hlen);
+    if(ip.ip_p != IPPROTO_ICMP)
+        return ;
+    icmp = (struct icmp *) (&recvbuf + hlen);
+    if((len -= hlen) < 8)
+	return;
+    struct icmp icmp_tmp = *icmp;
+    int flag = icmp_tmp.icmp_type == ICMP_ECHOREPLY;
+    
+    printf("flag\t %i", flag);
+    int pid = icmp_tmp.icmp_id;
+    printf("pid\t %i\n", pid);
+    if(icmp_tmp.icmp_type == ICMP_ECHOREPLY)
+    
+    if(icmp_tmp.icmp_id != getpid())
+    	return;
 
+       // tvsend = (struct timeval *) icmp->icmp_data;
+        //tv_sub(tvrecv, tvsend);
+        //rtt = tvrecv->tv_sec * 1000.0 + tvrecv->tv_usec /1000.0;
+    printf("  null bytes from : type = %d, code = %d\n",icmp_tmp.icmp_type, icmp_tmp.icmp_code);
+    
+	
+    
+    return;
+}
+
+void
+tv_sub(struct timeval *out, struct timeval *in)
+{
+    if((out->tv_usec -= in->tv_usec) < 0)
+    {
+        --out->tv_sec;
+        out->tv_usec += 1000000;
+    }
+    out->tv_sec -= in->tv_sec;
+}
 
 
 

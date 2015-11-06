@@ -3,6 +3,7 @@
 #include "sys/socket.h"
 #include "netdb.h"
 #include "netinet/in.h"
+#include <sys/types.h>
 
 #define BUFSIZE 1500
 
@@ -45,16 +46,18 @@ send_v4(int sockfd, struct sockaddr_in *tar)
     icmp->icmp_cksum = 0;
     icmp->icmp_cksum = in_cksum((u_short *)icmp, len);
     printf("testing\n");
-    sendto(sockfd, sendbuf, len, 0, (struct sockaddr *)tar, sizeof(struct sockaddr_in));
+    int addrlen = sizeof(struct sockaddr_in);
+    sendto(sockfd, sendbuf, len, 0, (struct sockaddr *)tar, addrlen);
 }
 
 
-void proc_v4()
+void proc_v4(int sockfd, struct sockaddr_in *tar)
 {
     char recbuf[BUFSIZE];
-    //recvfrom(sockfd, &recbuf, sizeof(recbuf), 0, &target, sizeof(target));
-    //printf("n = %i", n);
-
+    bzero(recbuf,sizeof(recbuf));
+    int len = sizeof(struct sockaddr_in);
+    int n = recvfrom(sockfd, recbuf, sizeof(recbuf), 0, (struct sockaddr *)tar, &len);
+    printf("n = %i\n", n);
 }
 
 

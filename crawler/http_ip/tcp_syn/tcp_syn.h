@@ -12,7 +12,7 @@ void test();
 
 void send_v4(int sockfd, struct sockaddr_in *target);
 
-void proc_v4();
+void proc_v4(int sockfd, struct sockaddr_in *target);
 uint16_t in_cksum(uint16_t *addr, int len);
 
 

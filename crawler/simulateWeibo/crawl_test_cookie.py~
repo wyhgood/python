@@ -9,7 +9,6 @@ import random
 import json
 import base64
 import getRsa
-import pickle
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -50,6 +49,28 @@ br.set_debug_responses(True)
 #refer = 'http://login.sina.com.cn/signup/signin.php?entry=sso'
 
 #cookie = 'SINAGLOBAL=6484463368542.492.1437097245826; __utma=15428400.1454781120.1447925140.1447925140.1447925140.1; __utmz=15428400.1447925140.1.1.utmcsr=zhidao.baidu.com|utmccn=(referral)|utmcmd=referral|utmcct=/link; _s_tentry=login.sina.com.cn; Apache=8722460942808.539.1452565552930; ULV=1452565552949:115:3:1:8722460942808.539.1452565552930:1452255349903; NSC_wjq_txfjcp_mjotij=ffffffff094113d345525d5f4f58455e445a4a423660; myuid=5133209579; login_sid_t=6266bcd0187f743a785b6e7ba83df721; UOR=developer.51cto.com,widget.weibo.com,login.sina.com.cn; SUS=SID-5133209579-1452569104-XD-0pnvi-3548ef1f095cb4ff90ca9ea06f42271b; SUE=es%3Da95021745f5d6873554883581538478e%26ev%3Dv1%26es2%3Dcf1eeec6ed9a6894e42490d025a7bc0f%26rs0%3DZp%252BbMaQiLCH7iOSLum5UEoc8kBPZjhK%252FjD3FR7Ti7pbbr2B6gqBKt1Y5AxaKmJbflwf69xF9YCc8sSBJvMwE9Jt5jLdHDi8X8hrGNbXPvnzuVxQydIVO0q3TE1Tk1zwm7%252BL2HF44MM4WQPmhzUurPurdH5lG9I903IoqVMbzGek%253D%26rv%3D0; SUP=cv%3D1%26bt%3D1452569104%26et%3D1452655504%26d%3Dc909%26i%3D271b%26us%3D1%26vf%3D0%26vt%3D0%26ac%3D2%26st%3D0%26uid%3D5133209579%26name%3D13522269132%26nick%3D%25E9%259D%2599%25E6%2580%259D975%26fmp%3D%26lcp%3D2015-10-17%252022%253A51%253A00; SUB=_2A257kAJADeRxGeNP6FET8CfJzDWIHXVY5HSIrDV8PUNbuNAPLVn2kW9LHeua-vZkPonz1bOK19JoFurFefteyA..; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9WWkqpgmwxf0-GeKzhfIh76r5JpX5K2t; SUHB=09PNLo_DWrVK2h; ALF=1484105104; SSOLoginState=1452569104; wvr=6; WBStore=5955be0e3d5411da|undefined'
+cookie = 'LT=1452582658;tgc=TGT-NTEzMzIwOTU3OQ==-1452582658-xd-7D431D243D6D8DDA1D67A69A57431BF7;SRF=1452582658;SRT=E.vAfsJOJqJZvuiO\
+Vuv!PlAnmBvXvCvXMdb1VCvnmBBvzvvv4m534X4ARmvvvD0vVmP9QtXXXFvRvvvXLnCXzvYvrBJAtBvv0BvMmCvvzNvAzRvAv7*B.vAflW-P9Rc0lR-ykADvn\
+JqiQVbiRVPBtS!r3JZPQVqbgVdWiMZ4siOzu4DbmKPWQT3EnS-s35FRnI4WbN39fS!bfiqSpi49ndDPIJeA7;SUB=_2A257kNdSDeRxGeNP6FET8CfJzDWIHX\
+VY5E-arDV_PUJbuNAPLUL6kW9LHeuR-aCa9tkZZDJ3s5vMbrqA8Iq1ng..;SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9WWkqpgmwxf0-GeKzhfIh76r;\
+SUE=es%3D2d48656271d951e34fb7bf62598cbde1%26ev%3Dv1%26es2%3D22abacc42166c5e4811f4513528b8cf9%26rs0%3DDsiPjLSO0Idw8N0Mj%25\
+2Foyueg1476L%252FuidjPAenJUGAi10KKoICs6jjUMmis6L0%252Fv7aTv4bqDdXuI6KZhU05gcwH01Y%252FVU8tVXXCZ9bsEXxkXFEQTe3WUd7tAfta0q9\
+ODEQXaHP4Hxs5SjOTML0wFFpajStLNJ6o%252BLBT7mEHJo30o%253D%26rv%3D0;SUP=cv%3D1%26bt%3D1452582658%26et%3D1452669058%26d%3D40c\
+3%26i%3D38e2%26us%3D1%26vf%3D0%26vt%3D0%26ac%3D2%26st%3D0%26lt%3D1%26uid%3D5133209579%26user%3D13522269132%26ag%3D1%26nam\
+e%3D13522269132%26nick%3D%25E9%259D%2599%25E6%2580%259D975%26sex%3D%26ps%3D0%26email%3D%26dob%3D%26ln%3D13522269132%26os%\
+3D%26fmp%3D%26lcp%3D2015-10-17%252022%253A51%253A00;SUS=SID-5133209579-1452582658-XD-n3xq5-cf4b295f86af4595cc2296e2bc7c38\
+e2;sso_info=v02m6alo5qztKWRk6SljpSQpY6TpKWRk5iljoOApY6UkLmNs5SmnZalpI-TlLGMs4yyjIOktY2zpMA=;ALF=1455174658;SSOLoginState=\
+1452582658;SSOLoginState=1452582658;SUB=_2A257kNdSDeRxGeNP6FET8CfJzDWIHXVY5E-arDV8PUJbuNAPLWX6kW9LHesczW6T_1wgyAisYsQ4teQ\
+yG5q8oQ..;SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9WWkqpgmwxf0-GeKzhfIh76r5JpX5K2t;SUE=es%3D1fe2b70fd602c145ec3fa4ca742112c3\
+%26ev%3Dv1%26es2%3D505a4e74dffbf7b5fffe2ab78c7d5ed1%26rs0%3DOVFmzHV9N0NzPPxfaD%252BkVHLYiXhdCAHc8cNar4MxSLW0i4q6UmdFs1eUw\
+XK7WrEC%252BfwM0VPiy9fHsq70DALsFHbgajgOMelwllNcRlCUzb8YVUBnst929ntJLxEikb%252BU4%252FrnNea2x1e0SJb%252FOoLHeF2WycfmWdvp4l\
+WBcT%252B%252Bzac%253D%26rv%3D0;SUHB=00xZai0BTivtpe;SUP=cv%3D1%26bt%3D1452582658%26et%3D1452669058%26d%3Dc909%26i%3D271b%\
+26us%3D1%26vf%3D0%26vt%3D0%26ac%3D2%26st%3D0%26uid%3D5133209579%26name%3D13522269132%26nick%3D%25E9%259D%2599%25E6%2580%2\
+59D975%26fmp%3D%26lcp%3D2015-10-17%252022%253A51%253A00;SUS=SID-5133209579-1452582658-XD-r2768-3d774cd42a7991a1f0c665ce80\
+9e271b;wvr=6;ALF=1452582658;SSOLoginState=1452582659153;TC-Ugrow-G0=e66b2e50a7e7f417f6cc12eec600f517;TC-V5-G0=c427b4f7dad\
+4c026ba2b0431d93d839e;'
+
+#cookie ='LT=1452581025;tgc=TGT-NTU5NTE2NDU4NA==-1452581025-xd-11AF36634AA7B3FF1845714AB85C1C49;SRF=1452581025;SRT=E.vAfsiO!sJORriOXrvcoOAnmBvXvCvXMdb1CYvnmBBvzvvv4m534X4ARmvvvD0vVmP9QpzAXFvRvvvXLnCXzvBvrBJAtBvv0BvMmCvvzNvAzRvAv7*B.vAflW-P9Rc0lR-ykADvnJqiQVbiRVPBtS!r3JZPQVqbgVdWiMZ4siOzu4DbmKPWQUry1T4ueT4kQdOPSNdkJN!ow4mWZi49ndDPIJeA7;SUB=_2A257kNDxDeTxGeNL4lcQ9irJwziIHXVY5EU5rDV_PUJbuNAPLWOkkW9LHesorLrsg9NSt6mge4TnRqom8op1BQ..;SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9WWoOJiNgiKWY5YIkLJLzPGc;SUE=es%3Dac3c2d9f88c2eee25b372c58eae0ab18%26ev%3Dv1%26es2%3Db302f9cd80c61a2f7d2d60f8d72c3d23%26rs0%3DH4ITSfhbA0suZrrf6FpfZ6RquJAvGrLTa4J4c1vjp4BfMTorbHv%252BjbONFRAAKbmN7flyTkRwa0ViqtUgPRFLQEg6SHDbjyQVXfFKXzUj7%252BDcV8YBrmCARw53cpjxJY%252FYzRbfCteljqN%252FaAc5or4AQhGtgYceXtl5zkQEMS0xyCo%253D%26rv%3D0;SUP=cv%3D1%26bt%3D1452581025%26et%3D1452667425%26d%3D40c3%26i%3D38e2%26us%3D1%26vf%3D0%26vt%3D0%26ac%3D2%26st%3D0%26lt%3D1%26uid%3D5595164584%26user%3D731840616%2540qq.com%26ag%3D4%26name%3D731840616%2540qq.com%26nick%3D%25E7%2594%25A8%25E6%2588%25B75595164584%26sex%3D%26ps%3D0%26email%3D%26dob%3D%26ln%3D731840616%2540qq.com%26os%3D%26fmp%3D%26lcp%3D;SUS=SID-5595164584-1452581025-XD-2runk-7a13b78dacf5ae05f8b0ec0fac5b38e2;sso_info=v02m6alo5qztKWRk5yljpOQpZCToKWRk5iljoOgpZCjnLWNk6S1jJOYtI2ToLSJp5WpmYO0tY2TpLWMk5i0jZOgtA==;ALF=1455173025;SSOLoginState=1452581025;SSOLoginState=1452581025;SUB=_2A257kNDxDeTxGeNL4lcQ9irJwziIHXVY5EU5rDV8PUJbuNAPLUzHkW9LHesFSSk9baIsqQPWD0VHW1RVuSYh_Q..;SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9WWoOJiNgiKWY5YIkLJLzPGc5JpX5K2t;SUE=es%3Dba8ca86b191bba8fb76c0bfa29f7ddf9%26ev%3Dv1%26es2%3D1f785582a90b9ed5b5bb5ba4489032fc%26rs0%3D0bcnBE2WjD7G%252BAqxqxDUBquNj8JVXMYHkcrbv05RNJ0jeYF%252FqWdcV7gZ0b0dNZgZwFKBnYyD0h73L037Q8FtBGHvUZ4OaRGtKMVvg%252FWd4K49fZYYl%252FrN2uF%252BN9DAi%252Ft25sO1HyzYZf1%252Flx5EK%252FrUfFWrzjTmc24w%252Fn%252BkZP2pL7c%253D%26rv%3D0;SUHB=00x5P8SffivvRg;SUP=cv%3D1%26bt%3D1452581025%26et%3D1452667425%26d%3Dc909%26i%3D271b%26us%3D1%26vf%3D0%26vt%3D0%26ac%3D2%26st%3D0%26uid%3D5595164584%26name%3D731840616%2540qq.com%26nick%3D%25E7%2594%25A8%25E6%2588%25B75595164584%26fmp%3D%26lcp%3D;SUS=SID-5595164584-1452581025-XD-9hgk7-4ba9be523e385b39a46803df1b9a271b;ALF=1452581025;SSOLoginState=1452581025720;miaopai=usrmdinst_1;TC-Page-G0=4e714161a27175839f5a8e7411c8b98c;TC-Ugrow-G0=e66b2e50a7e7f417f6cc12eec600f517;'
 
 refer = 'http://login.sina.com.cn/?r=%2Fmember%2Fmy.php%3Fentry%3Dsso'
 host = 'login.sina.com.cn'
@@ -64,8 +85,8 @@ br.addheaders = [('Refer',refer),
         ('Host',host),
         ('Origin',origin),
         ('Content-Type',content_type),
-        ('Connection', connection)
-        #('Cookie', cookie)
+        ('Connection', connection),
+        ('Cookie', cookie)
         ]
 
 
@@ -97,7 +118,7 @@ print servertime
 print rsakv
 print publickey
 
-passwd = ""
+passwd = "pxfg73uv"
 crawler = getRsa.Test()
 sp = crawler.js(servertime, nonce.strip(), passwd, publickey)
 print sp
@@ -105,7 +126,7 @@ print sp
 
 
 t = str(int(time.time()*1000))
-username = '13522269132'
+username = '731840616@qq.com'
 su = base64.encodestring(username)
 print su
 #su = 'MTM1MjIyNjkxMzI='
@@ -134,102 +155,14 @@ params = {
         'returntype':'TEXT'
         }
 data = urllib.urlencode(params)
-r = br.open(post_url, data)
-html = r.read()
-print html
-d = json.loads(html)
-print len(d)
-https = d['crossDomainUrlList']
-print https
-
-r = br.open(https[0])
-print r.read()
-r = br.open(https[1])
-print r.read()
-r = br.open(https[2])
-print r.read()
-
-
-
-t1 = str(int(time.time()))
-t = str(int(time.time()*1000))
-print t, t1
-url = 'http://crosdom.weicaifu.com/sso/crosdom?action=login&savestate='+ t1 +'&callback=sinaSSOController.doCrossDomainCallBack&script\
-Id=ssoscript1&client=ssologin.js(v1.4.15)&_=' + t + 'HTTP/1.1'
-#host = 'crosdom.weicaifu.com'
-#br.addheaders = [('Host', host)]
-
-r = br.open(url)
-print r.read()
-
-r = br.open('http://login.sina.com.cn/')
-print r.read()
-r = br.open('http://login.sina.com.cn/member/app.php?entry=sso&act=my')
-print r.read()
-#r = br.open('http://s.weibo.com/weibo/data%2520science&page=9')
+#r = br.open(post_url, data)
 #html = r.read()
-r = br.open('http://login.sina.com.cn/member/my.php?entry=sso')
-#print r.read()
-#print html
-
-#r = br.open('http://weibo.com/u/5133209579/home?wvr=5')
-#r = br.open('https://www.baidu.com/link?url=WGfYfteHfT7CkABTY3AboUc0x9sMWxrjBXOPHiyi4Pq&wd=&eqid=b09ad79f0000fe2e0000000256949e50')
-#r = br.open('http://weibo.com/')
-#print r.read()
-
-
 r = br.open('http://s.weibo.com/weibo/data%2520science&page=9')
 html = r.read()
-#print html
-
-r = br.open('http://weibo.com/p/1005051496959004/follow?relate=fans&page=3#Pl_Official_HisRelation__65')
-html = r.read()
-print html
-#print type(cj)  
-#f = open("dump.txt", 'wb')
-#pickle.dump(cj, f)
-#f.close()
-
-
-
-'''
-cook = ""
-for ck in cj:
-    cook = cook+ ck.name +"="+ck.value+";"
-print cook
-'''
-
-
-#r = br.open('http://s.weibo.com/weibo/data%2520science&page=9')
-#html = r.read()
-#print html
-
-
-
-
-'''
-host='passport.weibo.com'
-refer='http://login.sina.com.cn/signup/signin.php'
-br.addheaders = [('Refer',refer),
-        ('User-agent', user_agent),
-        ('Host',host),
-        ('Origin',origin),
-        ('Content-Type',content_type),
-        ('Connection', connection)
-        #('Cookie', cookie)
-        ]
-
-
-r = br.open('http://wbsso/login?ticket=ST-NTEzMzIwOTU3OQ%3D%3D-1452576318-xd-9ABFEEFDECDEF4FFFA9B1ED09D46AE75&ssosavestate=1452576318&callback=sinaSSOController.doCrossDomainCallBack&scriptId=ssoscript0&client=ssologin.js(v1.4.15)&_=1452576317579 HTTP/1.1')
-html = r.read()
-
-r = br.open('http://s.weibo.com/weibo/data%2520science&page=9')
-html = r.read()
-
 print html
 for ck in cj:
     print ck.name +":"+ck.value
-'''
+
 # test the request
 
 #r = br.open('http://www.iqiyi.com')

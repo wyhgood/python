@@ -99,7 +99,7 @@ print servertime
 print rsakv
 print publickey
 
-passwd = "pxfg73uv"
+passwd = ""
 crawler = getRsa.Test()
 sp = crawler.js(servertime, nonce.strip(), passwd, publickey)
 print sp

@@ -3,7 +3,7 @@ import MySQLdb
 import time
 
 #db = MySQLdb.connect("localhost","testuser","test123","TESTDB" )
-db = MySQLdb.connect(host="120.26.49.233",port=3302, user="maindata",passwd="maindata123456!@#$%^",db="travel_main")
+
 f = open("zomato_site_map2","r")
 lines = f.readlines()
 
